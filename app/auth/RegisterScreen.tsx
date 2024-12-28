@@ -1,9 +1,9 @@
-import React, {useState} from "react";
-import {StyleSheet, Text, TextInput, TouchableOpacity} from "react-native";
-import {useRouter} from "expo-router";
+import React, { useState } from "react";
+import { StyleSheet, Text, TextInput, TouchableOpacity } from "react-native";
+import { useRouter } from "expo-router";
 import axios from "axios";
-import {ThemedView} from "@/components/ThemedView";
-import {Button, Dialog, PaperProvider, Portal} from "react-native-paper";
+import { ThemedView } from "@/components/ThemedView";
+import { Button, Dialog, PaperProvider, Portal } from "react-native-paper";
 import API_URL from "../../config/config";
 
 export default function RegisterScreen() {
@@ -16,7 +16,7 @@ export default function RegisterScreen() {
 
     const handleRegister = async () => {
         try {
-            await axios.post(`${API_URL}/api/auth/register`, {username, password, email});
+            await axios.post(`${API_URL}/api/auth/register`, { username, password, email });
             router.replace("/auth/LoginScreen");
         } catch (error) {
             const errorMessage = (error as any).response?.data?.message || "An error occurred";
@@ -28,7 +28,7 @@ export default function RegisterScreen() {
     return (
         <PaperProvider>
             <ThemedView style={styles.container}>
-                <Text style={styles.title}>Create an Account</Text>
+                <Text style={styles.title}>on your life capt!</Text>
                 <Text style={styles.subtitle}>Join us and get started</Text>
                 <TextInput
                     style={styles.input}
@@ -80,17 +80,17 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         padding: 16,
-        backgroundColor: "#f9f9f9",
+        backgroundColor: "red", // Latar belakang merah
     },
     title: {
         fontSize: 24,
         fontWeight: "bold",
         marginBottom: 24,
-        color: "#333",
+        color: "white", // Warna font putih
     },
     subtitle: {
         fontSize: 16,
-        color: "#666",
+        color: "white", // Warna font putih
         marginBottom: 24,
     },
     input: {
@@ -106,14 +106,14 @@ const styles = StyleSheet.create({
     registerButton: {
         width: "100%",
         height: 48,
-        backgroundColor: "#007BFF",
+        backgroundColor: "black", // Ubah latar belakang tombol pendaftaran menjadi hitam
         borderRadius: 8,
         justifyContent: "center",
         alignItems: "center",
         marginBottom: 16,
     },
     registerButtonText: {
-        color: "#fff",
+        color: "#fff", // Ubah warna teks tombol pendaftaran menjadi putih
         fontSize: 16,
         fontWeight: "600",
     },
@@ -121,13 +121,13 @@ const styles = StyleSheet.create({
         width: "100%",
         height: 48,
         borderWidth: 1,
-        borderColor: "#007BFF",
+        borderColor: "black", // Ubah border tombol login menjadi hitam
         borderRadius: 8,
         justifyContent: "center",
         alignItems: "center",
     },
     loginButtonText: {
-        color: "#007BFF",
+        color: "black", // Ubah warna teks tombol login menjadi hitam
         fontSize: 16,
         fontWeight: "600",
     },

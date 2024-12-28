@@ -1,10 +1,9 @@
-import React, {useState} from "react";
-import {Image, StyleSheet, Text, TextInput, TouchableOpacity} from "react-native";
-import {useRouter} from "expo-router";
+import React, { useState } from "react";
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, ImageBackground } from "react-native";
+import { useRouter } from "expo-router";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {ThemedView} from "@/components/ThemedView";
-import {Button, Dialog, PaperProvider, Portal} from "react-native-paper";
+import { Button, Dialog, PaperProvider, Portal } from "react-native-paper";
 import API_URL from "../../config/config";
 
 export default function LoginScreen() {
@@ -40,9 +39,13 @@ export default function LoginScreen() {
 
     return (
         <PaperProvider>
-            <ThemedView style={styles.container}>
-                <Image source={require("../../assets/images/icon.png")} style={styles.logo} />
-                <Text style={styles.title}>Welcome Back!</Text>
+            <ImageBackground
+                source={require("../../assets/images/login.jpg")} // Ganti dengan nama file gambar latar belakang Anda
+                style={styles.container}
+                resizeMode="cover" // Atur cara gambar ditampilkan
+            >
+                <Image source={require("../../assets/images/avenger.png")} style={styles.logo} />
+                <Text style={styles.title}>ARFAN STARK</Text>
                 <Text style={styles.subtitle}>Log in to continue</Text>
                 <TextInput
                     style={styles.input}
@@ -75,7 +78,7 @@ export default function LoginScreen() {
                         </Dialog.Actions>
                     </Dialog>
                 </Portal>
-            </ThemedView>
+            </ImageBackground>
         </PaperProvider>
     );
 }
@@ -86,7 +89,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         padding: 16,
-        backgroundColor: "#f9f9f9",
     },
     logo: {
         width: 150,
@@ -98,12 +100,12 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: "bold",
         marginBottom: 8,
-        color: "#333",
+        color: "white", // Ubah warna teks menjadi putih agar kontras dengan latar belakang
     },
     subtitle: {
         fontSize: 16,
         marginBottom: 24,
-        color: "#666",
+        color: "#fff", // Ubah warna teks subtitle menjadi putih
     },
     input: {
         width: "100%",
@@ -118,7 +120,7 @@ const styles = StyleSheet.create({
     loginButton: {
         width: "100%",
         height: 48,
-        backgroundColor: "#007BFF",
+        backgroundColor: "red", // Ubah warna latar belakang tombol login menjadi merah
         borderRadius: 8,
         justifyContent: "center",
         alignItems: "center",
@@ -133,13 +135,13 @@ const styles = StyleSheet.create({
         width: "100%",
         height: 48,
         borderWidth: 1,
-        borderColor: "#007BFF",
+        borderColor: "red", // Ubah warna border tombol register menjadi merah
         borderRadius: 8,
         justifyContent: "center",
         alignItems: "center",
     },
     registerButtonText: {
-        color: "#007BFF",
+        color: "red", // Ubah warna teks tombol register menjadi merah
         fontSize: 16,
         fontWeight: "600",
     },
