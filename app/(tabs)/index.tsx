@@ -75,7 +75,7 @@ const TodosScreen = () => {
     return (
         <PaperProvider>
             <ImageBackground 
-                source={{ uri: 'https://i.pinimg.com/736x/cf/64/18/cf641839896b77687ff19e079eeb95e2.jpg' }} // Ganti dengan URL gambar latar belakang Anda
+                source={{ uri: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fGJhY2tncm91bmR8ZW58MHx8fHwxNjc4MjY0NzY0&ixlib=rb-4.0.3&q=80&w=1080' }} // New background image
                 style={styles.background}
             >
                 <ThemedView style={styles.container}>
@@ -89,13 +89,13 @@ const TodosScreen = () => {
                             renderItem={({ item }) => (
                                 <Card style={styles.card} elevation={3} onPress={() => router.push(`../todo/${item._id}`)}>
                                     <Card.Content>
-                                        <Text variant="titleMedium">{item.title}</Text>
+                                        <Text variant="titleMedium" style={styles.cardTitle}>{item.title}</Text>
                                         <Text variant="bodyMedium" style={styles.description}>{item.description}</Text>
                                     </Card.Content>
                                     <Card.Actions>
                                         <Button 
                                             onPress={() => handleDeleteTodo(item._id)} 
-                                            labelStyle={styles.deleteButtonText} // Ubah warna teks tombol Delete menjadi merah
+                                            labelStyle={styles.deleteButtonText}
                                         >
                                             Delete
                                         </Button>
@@ -106,17 +106,16 @@ const TodosScreen = () => {
                         />
                     )}
                     {isAdding && (
-                        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-                                              style={styles.inputContainer}>
+                        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={styles.inputContainer}>
                             <TextInput 
                                 label="Title" 
                                 value={title} 
                                 onChangeText={setTitle} 
                                 style={styles.input}
                                 mode="outlined" 
-                                activeOutlineColor="red" // Ubah warna garis luar saat aktif menjadi merah
-                                outlineColor="red" // Ubah warna garis luar menjadi merah
-                                labelStyle={{ color: 'red' }} // Ubah warna label menjadi merah
+                                activeOutlineColor="#6200ee" // Primary color for active outline
+                                outlineColor="#6200ee" // Primary color for default outline
+                                labelStyle={styles.labelStyle} // Consistent label style
                             />
                             <TextInput 
                                 label="Description" 
@@ -124,9 +123,9 @@ const TodosScreen = () => {
                                 onChangeText={setDescription}
                                 style={styles.input} 
                                 mode="outlined" 
-                                activeOutlineColor="red" // Ubah warna garis luar saat aktif menjadi merah
-                                outlineColor="red" // Ubah warna garis luar menjadi merah
-                                labelStyle={{ color: 'red' }} // Ubah warna label menjadi merah
+                                activeOutlineColor="#6200ee" // Primary color for active outline
+                                outlineColor="#6200ee" // Primary color for default outline
+                                labelStyle={styles.labelStyle} // Consistent label style
                                 multiline 
                             />
                             <Button mode="contained" onPress={handleAddTodo} style={styles.addButton} labelStyle={styles.addButtonText}>Add Todo</Button>
@@ -139,8 +138,8 @@ const TodosScreen = () => {
                             icon="plus"
                             onPress={() => setIsAdding(true)}
                             label="Add Todo"
-                            color="black" // Ubah warna ikon menjadi hitam
-                            theme={{ colors: { surface: 'white' } }} // Ubah latar belakang FAB menjadi putih
+                            color="black" // Icon color
+                            theme={{ colors: { surface: 'white' } }} // FAB background color
                         />
                     )}
                     <Portal>
@@ -168,19 +167,28 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: Constants.statusBarHeight,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Ubah latar belakang menjadi transparan hitam untuk kontras
+        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent black for contrast
+        borderRadius: 16, // Rounded corners for the container
+        margin: 16, // Margin around the container
     },
     title: {
         marginTop: 16,
         marginHorizontal: 16,
-        color: '#fff', // Ubah warna teks menjadi putih agar kontras
+        color: '#fff', // White text for contrast
+        fontSize: 28, // Increased font size for title
+        fontWeight: 'bold', // Bold title
     },
     listContainer: {
         padding: 16,
     },
     card: {
         marginBottom: 16,
-        borderRadius: 8,
+        borderRadius: 12, // Rounded corners for cards
+        backgroundColor: '#fff', // White background for cards
+    },
+    cardTitle: {
+        fontWeight: 'bold', // Bold title in card
+        fontSize: 18, // Increased font size for card title
     },
     description: {
         marginTop: 8,
@@ -190,39 +198,44 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: 16,
         bottom: 16,
-        backgroundColor: 'white', // Ubah latar belakang FAB menjadi putih
-        elevation: 5, // Tambahkan elevasi untuk memberikan efek bayangan
+        backgroundColor: 'white', // White background for FAB
+        elevation: 5, // Shadow effect for FAB
+        borderRadius: 28, // Rounded FAB
     },
     inputContainer: {
         padding: 16,
         borderTopLeftRadius: 16,
         borderTopRightRadius: 16,
         elevation: 5,
-        backgroundColor: 'white', // Ubah latar belakang input menjadi putih
+        backgroundColor: 'white', // White background for input container
     },
     input: {
         marginBottom: 12,
+        borderRadius: 8, // Rounded corners for input fields
     },
     addButton: {
         marginTop: 12,
-        backgroundColor: 'black', // Ubah latar belakang tombol Add Todo menjadi hitam
+        backgroundColor: '#6200ee', // Primary color for Add Todo button
     },
     addButtonText: {
-        color: 'white', // Ubah warna teks tombol Add Todo menjadi putih agar kontras
+        color: 'white', // White text for Add Todo button
     },
     cancelButton: {
         marginTop: 8,
     },
     cancelButtonText: {
-        color: 'blue', // Ubah warna teks tombol Cancel menjadi biru
+        color: '#6200ee', // Primary color for Cancel button
     },
     deleteButtonText: {
-        color: 'red', // Ubah warna teks tombol Delete menjadi merah
+        color: 'red', // Red text for Delete button
     },
     loading: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    labelStyle: {
+        color: '#6200ee', // Primary color for label
     },
 });
 

@@ -59,7 +59,7 @@ const ProfileScreen = () => {
     return (
         <PaperProvider>
             <ImageBackground 
-                source={{ uri: 'https://i.pinimg.com/736x/b8/36/d1/b836d1d0203921128bbfed7a4809956d.jpg' }} // Ganti dengan URL gambar latar belakang Anda
+                source={{ uri: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fGJhY2tncm91bmR8ZW58MHx8fHwxNjc4MjY0NzY0&ixlib=rb-4.0.3&q=80&w=1080' }} // Updated background image
                 style={styles.background}
             >
                 <ThemedView style={styles.container}>
@@ -67,9 +67,9 @@ const ProfileScreen = () => {
                         <ThemedView style={styles.profileContainer}>
                             <ThemedText style={styles.title}>Profile</ThemedText>
                             <ThemedText style={styles.label}>Username:</ThemedText>
-                            <ThemedText style={styles.username}>{profile.username}</ThemedText> {/* Username dengan warna hitam */}
+                            <ThemedText style={styles.username}>{profile.username}</ThemedText>
                             <ThemedText style={styles.label}>Email:</ThemedText>
-                            <ThemedText style={styles.email}>{profile.email}</ThemedText> {/* Email dengan warna merah */}
+                            <ThemedText style={styles.email}>{profile.email}</ThemedText>
                             <Button mode="contained" onPress={handleLogout} style={styles.logoutButton}>
                                 Log Out
                             </Button>
@@ -105,37 +105,37 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 16,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Ubah latar belakang menjadi transparan hitam untuk kontras
+        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent black for contrast
     },
     profileContainer: {
-        alignItems: 'flex-start', // Rata kiri untuk elemen profil
+        alignItems: 'flex-start', // Align left for profile elements
         padding: 16,
         borderRadius: 8,
-        backgroundColor: 'rgba(255, 255, 255, 0.8)', // Latar belakang putih transparan untuk profil
+        backgroundColor: 'rgba(255, 255, 255, 0.8)', // Semi-transparent white for profile background
     },
     title: {
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 16,
-        color: '#fff',
+        color: '#6200ee', // Primary color for title
     },
     label: {
         fontSize: 16,
         fontWeight: 'bold',
         marginTop: 8,
-        color: '#fff',
+        color: '#fff', // White color for labels
     },
     username: {
         fontSize: 16,
-        color: '#000', // Ubah warna username menjadi hitam
+        color: '#000', // Black color for username
     },
     email: {
         fontSize: 16,
-        color: 'red', // Ubah warna email menjadi merah
+        color: '#6200ee', // Primary color for email
     },
     logoutButton: {
         marginTop: 16,
-        backgroundColor: 'black', // Ubah warna tombol logout menjadi hitam
+        backgroundColor: '#6200ee', // Primary color for logout button
     },
     loading: {
         flex: 1,

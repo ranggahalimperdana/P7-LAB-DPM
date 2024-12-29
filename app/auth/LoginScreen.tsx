@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, ImageBackground } from "react-native";
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useRouter } from "expo-router";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Button, Dialog, PaperProvider, Portal } from "react-native-paper";
+import { Button, Dialog, Portal, Provider as PaperProvider } from "react-native-paper";
 import API_URL from "../../config/config";
 
 export default function LoginScreen() {
@@ -39,14 +39,9 @@ export default function LoginScreen() {
 
     return (
         <PaperProvider>
-            <ImageBackground
-                source={require("../../assets/images/login.jpg")} // Ganti dengan nama file gambar latar belakang Anda
-                style={styles.container}
-                resizeMode="cover" // Atur cara gambar ditampilkan
-            >
-                <Image source={require("../../assets/images/avenger.png")} style={styles.logo} />
-                <Text style={styles.title}>ARFAN STARK</Text>
-                <Text style={styles.subtitle}>Log in to continue</Text>
+            <View style={styles.container}>
+                <Text style={styles.title}>Welcome Back!</Text>
+                <Text style={styles.subtitle}>Log in to your account</Text>
                 <TextInput
                     style={styles.input}
                     placeholder="Username"
@@ -65,7 +60,7 @@ export default function LoginScreen() {
                     <Text style={styles.loginButtonText}>Login</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.registerButton} onPress={() => router.push("/auth/RegisterScreen")}>
-                    <Text style={styles.registerButtonText}>Register</Text>
+                    <Text style={styles.registerButtonText}>Don't have an account? Register</Text>
                 </TouchableOpacity>
                 <Portal>
                     <Dialog visible={dialogVisible} onDismiss={handleDialogDismiss}>
@@ -78,7 +73,7 @@ export default function LoginScreen() {
                         </Dialog.Actions>
                     </Dialog>
                 </Portal>
-            </ImageBackground>
+            </View>
         </PaperProvider>
     );
 }
@@ -89,23 +84,18 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         padding: 16,
-    },
-    logo: {
-        width: 150,
-        height: 150,
-        marginBottom: 24,
-        resizeMode: "contain",
+        backgroundColor: "#f5f5f5", // Light background color
     },
     title: {
-        fontSize: 24,
+        fontSize: 28,
         fontWeight: "bold",
         marginBottom: 8,
-        color: "white", // Ubah warna teks menjadi putih agar kontras dengan latar belakang
+        color: "#333", // Dark text color for contrast
     },
     subtitle: {
         fontSize: 16,
         marginBottom: 24,
-        color: "#fff", // Ubah warna teks subtitle menjadi putih
+        color: "#666", // Slightly lighter text color
     },
     input: {
         width: "100%",
@@ -120,7 +110,7 @@ const styles = StyleSheet.create({
     loginButton: {
         width: "100%",
         height: 48,
-        backgroundColor: "red", // Ubah warna latar belakang tombol login menjadi merah
+        backgroundColor: "#6200ee", // Primary color for the button
         borderRadius: 8,
         justifyContent: "center",
         alignItems: "center",
@@ -135,13 +125,13 @@ const styles = StyleSheet.create({
         width: "100%",
         height: 48,
         borderWidth: 1,
-        borderColor: "red", // Ubah warna border tombol register menjadi merah
+        borderColor: "#6200ee", // Border color matching the button
         borderRadius: 8,
         justifyContent: "center",
         alignItems: "center",
     },
     registerButtonText: {
-        color: "red", // Ubah warna teks tombol register menjadi merah
+        color: "#6200ee", // Text color matching the button
         fontSize: 16,
         fontWeight: "600",
     },

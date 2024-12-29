@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, TextInput, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useRouter } from "expo-router";
 import axios from "axios";
 import { ThemedView } from "@/components/ThemedView";
@@ -28,35 +28,37 @@ export default function RegisterScreen() {
     return (
         <PaperProvider>
             <ThemedView style={styles.container}>
-                <Text style={styles.title}>on your life capt!</Text>
+                <Text style={styles.title}>Welcome to Our App!</Text>
                 <Text style={styles.subtitle}>Join us and get started</Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Username"
-                    value={username}
-                    onChangeText={setUsername}
-                    autoCapitalize="none"
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Email"
-                    value={email}
-                    onChangeText={setEmail}
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Password"
-                    value={password}
-                    onChangeText={setPassword}
-                    secureTextEntry
-                />
+                <View style={styles.inputContainer}>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Username"
+                        value={username}
+                        onChangeText={setUsername}
+                        autoCapitalize="none"
+                    />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Email"
+                        value={email}
+                        onChangeText={setEmail}
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                    />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Password"
+                        value={password}
+                        onChangeText={setPassword}
+                        secureTextEntry
+                    />
+                </View>
                 <TouchableOpacity style={styles.registerButton} onPress={handleRegister}>
                     <Text style={styles.registerButtonText}>Register</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.loginButton} onPress={() => router.push("/auth/LoginScreen")}>
-                    <Text style={styles.loginButtonText}>Login</Text>
+                    <Text style={styles.loginButtonText}>Already have an account? Login</Text>
                 </TouchableOpacity>
                 <Portal>
                     <Dialog visible={dialogVisible} onDismiss={() => setDialogVisible(false)}>
@@ -80,54 +82,66 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         padding: 16,
-        backgroundColor: "red", // Latar belakang merah
+        backgroundColor: "#f5f5f5", // Light background for better contrast
     },
     title: {
-        fontSize: 24,
+        fontSize: 28,
         fontWeight: "bold",
-        marginBottom: 24,
-        color: "white", // Warna font putih
+        marginBottom: 16,
+        color: "#333", // Darker text for better readability
     },
     subtitle: {
         fontSize: 16,
-        color: "white", // Warna font putih
-        marginBottom: 24,
+        color: "#666", // Subtle color for the subtitle
+        marginBottom: 32,
+    },
+    inputContainer: {
+        width: "100%",
+        marginBottom: 20,
     },
     input: {
         width: "100%",
-        height: 48,
+        height: 50,
         borderColor: "#ccc",
         borderWidth: 1,
-        borderRadius: 8,
+        borderRadius: 10,
         paddingHorizontal: 12,
         marginBottom: 16,
         backgroundColor: "#fff",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 2, // For Android shadow
     },
     registerButton: {
         width: "100%",
-        height: 48,
-        backgroundColor: "black", // Ubah latar belakang tombol pendaftaran menjadi hitam
-        borderRadius: 8,
+        height: 50,
+        backgroundColor: "#6200ee", // Primary color for the button
+        borderRadius: 10,
         justifyContent: "center",
         alignItems: "center",
         marginBottom: 16,
     },
     registerButtonText: {
-        color: "#fff", // Ubah warna teks tombol pendaftaran menjadi putih
-        fontSize: 16,
+        color: "#fff",
+        fontSize: 18,
         fontWeight: "600",
     },
     loginButton: {
         width: "100%",
-        height: 48,
+        height: 50,
         borderWidth: 1,
-        borderColor: "black", // Ubah border tombol login menjadi hitam
-        borderRadius: 8,
+        borderColor: "#6200ee", // Match border color with button
+        borderRadius: 10,
         justifyContent: "center",
         alignItems: "center",
     },
     loginButtonText: {
-        color: "black", // Ubah warna teks tombol login menjadi hitam
+        color: "#6200ee", // Primary color for the text
         fontSize: 16,
         fontWeight: "600",
     },
